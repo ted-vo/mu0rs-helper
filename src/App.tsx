@@ -5,6 +5,7 @@ import { AppFooter } from './components/footer';
 import { AppMenu } from './components/menu-sider';
 import { RouteStatus } from './components/route-status';
 import { CharBuilder } from './components/builder';
+
 import styles from './App.module.css';
 
 const { Content } = Layout;
@@ -35,7 +36,7 @@ const App: React.FC = () => {
         </Layout>
       </Content>
       <AppFooter />
-      <div className={styles.customCursor}></div>
+      <div style={styles} />
     </Layout>
   );
 };
