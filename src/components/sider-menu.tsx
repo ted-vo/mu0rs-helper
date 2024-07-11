@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, MenuProps } from 'antd';
 import { Layout, theme } from 'antd';
-import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
+import { IeOutlined, ShoppingOutlined, UserOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
@@ -44,6 +44,12 @@ const items: MenuItem[] = [
         ],
       },
     ],
+  },
+  {
+    label: 'Elements',
+    key: 'elements',
+    icon: <IeOutlined />,
+    children: []
   }
 ];
 
@@ -60,7 +66,6 @@ const AppMenu: React.FC<AppMenuProps> = ({ setResult }) => {
   const [_current, setCurrent] = useState('dw');
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
     setCurrent(e.key);
     setResult(e.key);
   };

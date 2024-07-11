@@ -1,0 +1,9 @@
+.charRowHeader {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charRowItem {
+  margin-left: 32px;
+  margin-top: 5px;
+}

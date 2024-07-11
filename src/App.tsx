@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Layout, theme } from 'antd';
 import { AppHeader } from './components/header';
 import { AppFooter } from './components/footer';
-import { AppMenu } from './components/menu-sider';
+import { AppMenu } from './components/sider-menu';
 import { RouteStatus } from './components/route-status';
-import { CharBuilder } from './components/builder';
+import { CharBuilder } from './components/char/Builder';
 
 import styles from './App.module.css';
 
@@ -15,11 +15,6 @@ const App: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const [pageContent, setPageContent] = useState('');
-
-  const handlePageChanged = (e: any) => {
-    console.log('page changed ', e);
-    setPageContent(e.key)
-  };
 
   return (
     <Layout>
