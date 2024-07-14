@@ -1,24 +1,23 @@
-import { Content } from 'antd/es/layout/layout';
-import React, { useEffect, useState } from 'react';
+import { Content } from "antd/es/layout/layout";
+import React, { useEffect, useState } from "react";
 import { Col, Row, Flex, InputNumber } from "antd";
 
-import type { InputNumberProps } from 'antd';
+import type { InputNumberProps } from "antd";
 
-import { Char } from '../../model/char';
+import styles from "./Builder.module.css";
 
-import styles from './Builder.module.css';
-
-import { BorderOutlined, BugOutlined } from '@ant-design/icons';
+import { BorderOutlined, BugOutlined } from "@ant-design/icons";
+import { NewChar } from "../../model/newchar";
 //import { BoldOutlined } from '@ant-design/icons';
 
 interface CharBuilderProps {
-  charKey: string
+  charKey: string;
 }
 
 const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
-  const char = new Char(charKey);
+  const char = NewChar(charKey)
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState<String>("");
   const [master, setMaster] = useState(0);
   const [fruit, setFruit] = useState(0);
   const [point, setPoint] = useState(0);
@@ -35,42 +34,43 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
   const [ag, setAG] = useState(0);
   const [mp, setMP] = useState(0);
 
-  const onMasterChange: InputNumberProps['onChange'] = (value: any) => {
+  const onMasterChange: InputNumberProps["onChange"] = (value: any) => {
     setMaster(value);
   };
-  const onLevelChange: InputNumberProps['onChange'] = (value: any) => {
-    char.level = value;
-    setPoint(char.getPoint())
-    setName(char.getName())
+  const onLevelChange: InputNumberProps["onChange"] = (value: any) => {
+    char.setLevel(value);
+    setPoint(char.getPoint());
+    setName(char.getName());
+    console.log(char.getPoint());
   };
-  const onFruitChange: InputNumberProps['onChange'] = (value: any) => {
-    char.fruit = value;
-    setRPoint(char.getRPoint())
+  const onFruitChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.fruit = value;
+    setRPoint(char.getRPoint());
   };
-  const onStrChange: InputNumberProps['onChange'] = (value: any) => {
-    char.str = value;
-    console.log(char.getRPoint())
-    setRPoint(char.getRPoint())
+  const onStrChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.str = value;
+    console.log(char.getRPoint());
+    setRPoint(char.getRPoint());
   };
-  const onAgiChange: InputNumberProps['onChange'] = (value: any) => {
-    char.agi = value;
-    setRPoint(char.getRPoint())
+  const onAgiChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.agi = value;
+    setRPoint(char.getRPoint());
   };
-  const onVitChange: InputNumberProps['onChange'] = (value: any) => {
-    char.vit = value;
-    setRPoint(char.getRPoint())
+  const onVitChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.vit = value;
+    setRPoint(char.getRPoint());
   };
-  const onEneChange: InputNumberProps['onChange'] = (value: any) => {
-    char.ene = value;
-    setRPoint(char.getRPoint())
+  const onEneChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.ene = value;
+    setRPoint(char.getRPoint());
   };
-  const onCmdChange: InputNumberProps['onChange'] = (value: any) => {
-    char.cmd = value;
-    setRPoint(char.getRPoint())
+  const onCmdChange: InputNumberProps["onChange"] = (value: any) => {
+    //char.cmd = value;
+    setRPoint(char.getRPoint());
   };
 
   useEffect(() => {
-    setName(char.getName())
+    setName(char.getName());
     setHP(100);
     setSD(100);
     setAG(100);
@@ -88,30 +88,81 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
         </Col>
         <Col span={6} style={{ gap: 0 }}>
           <Flex vertical={true}>
-            <img src="bg-item-top.jpg" style={{ width: "100%", height: "50px" }} />
-            <div style={{ textAlign: "center", height: "0px", overflow: "visible", zIndex: "9999" }}>
-              <span style={{ fontSize: "18px", fontWeight: "bold", color: "white", position: "relative", top: "-25px" }}>
+            <img
+              src="bg-item-top.jpg"
+              style={{ width: "100%", height: "50px" }}
+            />
+            <div
+              style={{
+                textAlign: "center",
+                height: "0px",
+                overflow: "visible",
+                zIndex: "9999",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  color: "white",
+                  position: "relative",
+                  top: "-25px",
+                }}
+              >
                 {name}
               </span>
             </div>
-            <Flex vertical={false} style={{ gap: 0, backgroundImage: 'url("bg-1.png")', color: "white" }}>
+            <Flex
+              vertical={false}
+              style={{
+                gap: 0,
+                backgroundImage: 'url("bg-1.png")',
+                color: "white",
+              }}
+            >
               <img src="bg-item-left.jpg" />
               <Flex flex={1} vertical={true} style={{ padding: "16px 16px" }}>
-                <Flex vertical={false} style={{ alignItems: "center", justifyContent: "space-between" }}>
+                <Flex
+                  vertical={false}
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <Flex vertical={true}>
                     <span>Master</span>
-                    <InputNumber min={0} max={250} defaultValue={0} onChange={onMasterChange} />
+                    <InputNumber
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onMasterChange}
+                    />
                   </Flex>
                   <Flex vertical={true}>
                     <span>Level</span>
-                    <InputNumber min={1} max={400} defaultValue={1} onChange={onLevelChange} />
+                    <InputNumber
+                      min={1}
+                      max={400}
+                      defaultValue={1}
+                      onChange={onLevelChange}
+                    />
                   </Flex>
                   <Flex vertical={true}>
                     <span>Fruit</span>
-                    <InputNumber min={0} max={127} defaultValue={0} onChange={onFruitChange} />
+                    <InputNumber
+                      min={0}
+                      max={127}
+                      defaultValue={0}
+                      onChange={onFruitChange}
+                    />
                   </Flex>
                 </Flex>
-                <Row style={{ alignItems: "center", justifyContent: "space-between" }}>
+                <Row
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <h4>Total Point: {point}</h4>
                   <h4>Remaning Point: {rPoint}</h4>
                 </Row>
@@ -121,7 +172,12 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Strength</span>
                   </Col>
                   <Col>
-                    <InputNumber min={0} max={250} defaultValue={0} onChange={onStrChange} />
+                    <InputNumber
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onStrChange}
+                    />
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
@@ -135,7 +191,13 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Agility</span>
                   </Col>
                   <Col>
-                    <InputNumber style={{ marginLeft: "10px" }} min={0} max={250} defaultValue={0} onChange={onAgiChange} />
+                    <InputNumber
+                      style={{ marginLeft: "10px" }}
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onAgiChange}
+                    />
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
@@ -152,7 +214,13 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Stamina</span>
                   </Col>
                   <Col>
-                    <InputNumber style={{ marginLeft: "10px" }} min={0} max={250} defaultValue={0} onChange={onVitChange} />
+                    <InputNumber
+                      style={{ marginLeft: "10px" }}
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onVitChange}
+                    />
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
@@ -163,7 +231,13 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Energy</span>
                   </Col>
                   <Col>
-                    <InputNumber style={{ marginLeft: "10px" }} min={0} max={250} defaultValue={0} onChange={onEneChange} />
+                    <InputNumber
+                      style={{ marginLeft: "10px" }}
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onEneChange}
+                    />
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
@@ -177,24 +251,76 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Command</span>
                   </Col>
                   <Col>
-                    <InputNumber style={{ marginLeft: "10px" }} min={0} max={250} defaultValue={0} onChange={onCmdChange} />
+                    <InputNumber
+                      style={{ marginLeft: "10px" }}
+                      min={0}
+                      max={250}
+                      defaultValue={0}
+                      onChange={onCmdChange}
+                    />
                   </Col>
                 </Row>
               </Flex>
               <img src="bg-item-right.jpg" />
             </Flex>
-            <img src="bg-item-bot.jpg" style={{ width: "100%", height: "50px" }} />
+            <img
+              src="bg-item-bot.jpg"
+              style={{ width: "100%", height: "50px" }}
+            />
           </Flex>
         </Col>
       </Row>
 
-      <Flex vertical={false} style={{ padding: "8px 0", background: "cyan", justifyContent: "space-evenly" }}>
-        <div style={{ padding: '4px 4px', background: "red", color: "white", fontWeight: "bold" }}>HP {hp}</div>
-        <div style={{ padding: '4px 4px', background: "orange", color: "white", fontWeight: "bold" }}>SD {sd}</div>
-        <div style={{ padding: '4px 4px', background: "purple", color: "white", fontWeight: "bold" }}>AG {ag}</div>
-        <div style={{ padding: '4px 4px', background: "blue", color: "white", fontWeight: "bold" }}>MP {mp}</div>
+      <Flex
+        vertical={false}
+        style={{
+          padding: "8px 0",
+          background: "cyan",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <div
+          style={{
+            padding: "4px 4px",
+            background: "red",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          HP {hp}
+        </div>
+        <div
+          style={{
+            padding: "4px 4px",
+            background: "orange",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          SD {sd}
+        </div>
+        <div
+          style={{
+            padding: "4px 4px",
+            background: "purple",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          AG {ag}
+        </div>
+        <div
+          style={{
+            padding: "4px 4px",
+            background: "blue",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          MP {mp}
+        </div>
       </Flex>
-    </Content >
+    </Content>
   );
 };
 

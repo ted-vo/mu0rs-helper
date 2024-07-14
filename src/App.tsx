@@ -26,7 +26,9 @@ const App: React.FC = () => {
         >
           <AppMenu setResult={setPageContent} />
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            <CharBuilder charKey={pageContent} />
+            {
+              pageContent != "" ? <CharBuilder charKey={pageContent} /> : ""
+            }
           </Content>
         </Layout>
       </Content>

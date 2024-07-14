@@ -1,10 +1,31 @@
-class Char {
+export const CHAR_DW = "dw";
+export const CHAR_DK = "dk";
+export const CHAR_ELF = "elf";
+export const CHAR_MG = "mg";
+export const CHAR_DL = "dl";
+export const CHAR_SUM = "sum";
+export const CHAR_RF = "rf";
+
+export interface IChar {
+  initDefault(): void;
+  setLevel(value: number): void;
+  getName(): String;
+  getHP(): number;
+  getSD(): number;
+  getAG(): number;
+  getMP(): number;
+  getPoint(): number;
+  getRPoint(): number;
+}
+
+class BaseChar implements IChar {
   key: String;
   name: String;
 
   // --- common
-  level: number = 1;
+  level: number;
   master: number;
+
   // -- stat
   str: number;
   agi: number;
@@ -30,71 +51,34 @@ class Char {
 
   constructor(key: String) {
     this.key = key;
+    this.initDefault();
   }
 
-  getName(): string {
-    switch (this.key) {
-      case "dw":
-        if (this.level < 150) return "Dark Wizard";
-        if (this.level == 400) return "Grand Master";
-        return "Soul Master";
-      case "dk":
-        if (this.level < 150) return "Blade Knight";
-        if (this.level == 400) return "Blade Master";
-        return "Dark Knight";
-      case "elf":
-        if (this.level < 150) return "Muse Elf";
-        if (this.level == 400) return "High Elf";
-        return "Fairy Elf";
-      case "mg":
-        if (this.level == 400) return "Duel Master";
-        return "Magic Gladiator";
-      case "dl":
-        if (this.level == 400) return "Lord Emperor";
-        return "Dark Lord";
-      case "sum":
-        if (this.level < 150) return "Summoner";
-        if (this.level == 400) return "Dimension Master";
-        return "Bloody Summoner";
-      case "rf":
-        if (this.level == 400) return "Fist Master";
-        return "Rage Fighter";
-      default:
-        break;
-    }
+  initDefault(): void {}
+  setLevel(value: number): void {
+    this.level = value;
+  }
+  getName(): String {
     return "Character";
   }
-
-  // --- stat
-
-  // --- action point
-  getHP(_props: any): number {
+  getHP(): number {
     return 0;
   }
-  getSD(_props: any): number {
+  getSD(): number {
     return 0;
   }
-  getAG(_props: any): number {
+  getAG(): number {
     return 0;
   }
-  getMP(_props: any): number {
+  getMP(): number {
     return 0;
   }
-
   getPoint(): number {
-    return 2000;
+    return 9999;
   }
-
   getRPoint(): number {
-    return (
-      this.getPoint() - this.str - this.agi - this.vit - this.ene - this.cmd
-    );
-  }
-
-  // --- Dark Knight
-  getComboDmg(): number {
-    return 0;
+    return 9999;
   }
 }
 
-export { Char };
+export { BaseChar };
