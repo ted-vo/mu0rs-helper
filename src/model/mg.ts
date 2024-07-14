@@ -5,6 +5,10 @@ class MG extends BaseChar {
     super(CHAR_MG);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level == 400) return "Duel Master";
     return "Magic Gladiator";

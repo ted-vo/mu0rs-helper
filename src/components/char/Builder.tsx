@@ -86,7 +86,10 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
             <span>left</span>
           </Flex>
         </Col>
-        <Col span={6} style={{ gap: 0 }}>
+        <Col span={6} style={{
+          gap: 0, maxWidth: "350px", minHeight:
+            "650px"
+        }}>
           <Flex vertical={true}>
             <img
               src="bg-item-top.jpg"

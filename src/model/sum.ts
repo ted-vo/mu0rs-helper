@@ -5,6 +5,10 @@ class SUM extends BaseChar {
     super(CHAR_SUM);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level < 150) return "Summoner";
     if (this.level == 400) return "Dimension Master";

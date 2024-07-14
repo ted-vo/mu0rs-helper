@@ -5,6 +5,10 @@ class ELF extends BaseChar {
     super(CHAR_ELF);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level < 150) return "Fairy  Elf";
     if (this.level == 400) return "High Elf";

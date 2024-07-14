@@ -5,6 +5,10 @@ class DL extends BaseChar {
     super(CHAR_DL);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level == 400) return "Lord Emperor";
     return "Dark Lord";

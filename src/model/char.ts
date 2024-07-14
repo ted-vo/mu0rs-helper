@@ -54,7 +54,9 @@ class BaseChar implements IChar {
     this.initDefault();
   }
 
-  initDefault(): void {}
+  initDefault(): void {
+    this.level = 1;
+  }
   setLevel(value: number): void {
     this.level = value;
   }

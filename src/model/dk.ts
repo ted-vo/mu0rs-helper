@@ -5,6 +5,10 @@ class DK extends BaseChar {
     super(CHAR_DK);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level < 150) return "Dark Knight";
     if (this.level == 400) return "Blade Master";

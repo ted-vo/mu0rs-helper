@@ -5,6 +5,10 @@ class RF extends BaseChar {
     super(CHAR_RF);
   }
 
+  initDefault(): void {
+    super.initDefault();
+  }
+
   getName(): string {
     if (this.level == 400) return "Fist Master";
     return "Rage Fighter";

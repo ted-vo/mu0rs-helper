@@ -6,7 +6,7 @@ class DW extends BaseChar {
   }
 
   initDefault(): void {
-    this.level = 1;
+    super.initDefault();
   }
 
   getName(): string {
