@@ -2,13 +2,26 @@
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@models": [
+        "src/model"
+      ]
+    },
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "es2019"
   },
   "include": [
-    "*.module.css",
-    "**/*.module.css",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"

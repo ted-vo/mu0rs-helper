@@ -1,4 +1,1 @@
-{
-  "alias": [["@", "./src"]],
-  "extensions": ["js", "jsx", "ts", "tsx"]
-}
+{}

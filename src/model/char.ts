@@ -7,8 +7,18 @@ export const CHAR_SUM = "sum";
 export const CHAR_RF = "rf";
 
 export interface IChar {
+  level: number;
+  master: number;
+
+  str: number;
+  agi: number;
+  vit: number;
+  ene: number;
+  cmd: number;
+  fruit: number;
+  maxFruit: number;
+
   initDefault(): void;
-  setLevel(value: number): void;
   getName(): String;
   getHP(): number;
   getSD(): number;
@@ -20,43 +30,43 @@ export interface IChar {
 
 class BaseChar implements IChar {
   key: String;
-  name: String;
+  name: String = "";
 
   // --- common
-  level: number;
-  master: number;
+  level: number = 1;
+  master: number = 0;
 
   // -- stat
-  str: number;
-  agi: number;
-  vit: number;
-  ene: number;
-  cmd: number;
-  fruit: number;
+  str: number = 0;
+  agi: number = 0;
+  vit: number = 0;
+  ene: number = 0;
+  cmd: number = 0;
+  fruit: number = 0;
+  maxFruit: number = 0;
 
   // -- attack
-  min_dmg: number;
-  max_dmg: number;
-  wiz_min_dmg: number;
-  wiz_max_dmg: number;
-  skill_dmg: number;
-  aoe_dmg: number;
-  attack_rate: number;
-  attack_speed: number;
+  min_dmg: number = 0;
+  max_dmg: number = 0;
+  wiz_min_dmg: number = 0;
+  wiz_max_dmg: number = 0;
+  skill_dmg: number = 0;
+  aoe_dmg: number = 0;
+  attack_rate: number = 0;
+  attack_speed: number = 0;
 
   // -- defense
-  def: number;
-  def_rate: number;
-  def_pvp_rate: number;
+  def: number = 0;
+  def_rate: number = 0;
+  def_pvp_rate: number = 0;
 
   constructor(key: String) {
     this.key = key;
     this.initDefault();
   }
 
-  initDefault(): void {
-    this.level = 1;
-  }
+  initDefault(): void {}
+
   setLevel(value: number): void {
     this.level = value;
   }
@@ -79,7 +89,8 @@ class BaseChar implements IChar {
     return 9999;
   }
   getRPoint(): number {
-    return 9999;
+    const p = this.getPoint();
+    return p - this.str - this.agi - this.vit - this.ene - this.cmd;
   }
 }
 

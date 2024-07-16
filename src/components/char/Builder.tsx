@@ -1,5 +1,5 @@
 import { Content } from "antd/es/layout/layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Col, Row, Flex, InputNumber } from "antd";
 
 import type { InputNumberProps } from "antd";
@@ -7,19 +7,21 @@ import type { InputNumberProps } from "antd";
 import styles from "./Builder.module.css";
 
 import { BorderOutlined, BugOutlined } from "@ant-design/icons";
+import { IChar } from "../../model/char";
 import { NewChar } from "../../model/newchar";
-//import { BoldOutlined } from '@ant-design/icons';
 
 interface CharBuilderProps {
   charKey: string;
 }
 
 const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
-  const char = NewChar(charKey)
+  const char = useMemo<IChar>(() => NewChar(charKey), [charKey])
 
   const [name, setName] = useState<String>("");
+  const [level, setLevel] = useState(0);
   const [master, setMaster] = useState(0);
   const [fruit, setFruit] = useState(0);
+  const [maxFruit, setMaxFruit] = useState(0);
   const [point, setPoint] = useState(0);
   const [rPoint, setRPoint] = useState(0);
 
@@ -34,47 +36,82 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
   const [ag, setAG] = useState(0);
   const [mp, setMP] = useState(0);
 
+  // Attack
+  const [minDmg, setMinDmg] = useState(0);
+
   const onMasterChange: InputNumberProps["onChange"] = (value: any) => {
+    char.master = value;
     setMaster(value);
+    setHP(char.getHP());
   };
   const onLevelChange: InputNumberProps["onChange"] = (value: any) => {
-    char.setLevel(value);
-    setPoint(char.getPoint());
+    char.level = value;
+    setLevel(value);
     setName(char.getName());
-    console.log(char.getPoint());
+    setPoint(char.getPoint());
+    setRPoint(char.getRPoint());
+    setHP(char.getHP());
   };
   const onFruitChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.fruit = value;
+    char.fruit = value;
+    setFruit(value);
+    setPoint(char.getPoint())
     setRPoint(char.getRPoint());
   };
   const onStrChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.str = value;
-    console.log(char.getRPoint());
+    if (char.getRPoint() == 0 && value > str) return;
+
+    char.str = value;
+    setStr(value);
     setRPoint(char.getRPoint());
   };
   const onAgiChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.agi = value;
+    if (char.getRPoint() == 0 && value > agi) return;
+
+    char.agi = value;
+    setAgi(value);
     setRPoint(char.getRPoint());
   };
   const onVitChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.vit = value;
+    if (char.getRPoint() == 0 && value > vit) return;
+
+    char.vit = value;
+    setVit(value);
     setRPoint(char.getRPoint());
   };
   const onEneChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.ene = value;
+    if (char.getRPoint() == 0 && value > ene) return;
+
+    char.ene = value;
+    setEne(value);
     setRPoint(char.getRPoint());
   };
   const onCmdChange: InputNumberProps["onChange"] = (value: any) => {
-    //char.cmd = value;
+    if (char.getRPoint() == 0 && value > cmd) return;
+
+    char.cmd = value;
+    setCmd(value);
     setRPoint(char.getRPoint());
   };
 
   useEffect(() => {
-    setName(char.getName());
-    setHP(100);
-    setSD(100);
-    setAG(100);
-    setMP(100);
+    setMaster(char.master);
+    setLevel(char.level);
+    setFruit(char.fruit);
+    setMaxFruit(char.maxFruit);
+    setPoint(char.getPoint());
+    setRPoint(char.getRPoint());
+
+    setStr(char.str);
+    setAgi(char.agi);
+    setVit(char.vit);
+    setEne(char.ene);
+    setCmd(char.cmd);
+
+    setHP(char.getHP());
+    setSD(char.getSD());
+    setAG(char.getAG());
+    setMP(char.getMP());
   }, [charKey]);
 
   return (
@@ -137,7 +174,7 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <InputNumber
                       min={0}
                       max={250}
-                      defaultValue={0}
+                      value={master}
                       onChange={onMasterChange}
                     />
                   </Flex>
@@ -146,7 +183,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <InputNumber
                       min={1}
                       max={400}
-                      defaultValue={1}
+                      defaultValue={level}
+                      value={level}
                       onChange={onLevelChange}
                     />
                   </Flex>
@@ -154,8 +192,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <span>Fruit</span>
                     <InputNumber
                       min={0}
-                      max={127}
-                      defaultValue={0}
+                      max={maxFruit}
+                      value={fruit}
                       onChange={onFruitChange}
                     />
                   </Flex>
@@ -177,8 +215,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                   <Col>
                     <InputNumber
                       min={0}
-                      max={250}
-                      defaultValue={0}
+                      max={65553}
+                      value={str}
                       onChange={onStrChange}
                     />
                   </Col>
@@ -197,8 +235,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <InputNumber
                       style={{ marginLeft: "10px" }}
                       min={0}
-                      max={250}
-                      defaultValue={0}
+                      max={65553}
+                      value={agi}
                       onChange={onAgiChange}
                     />
                   </Col>
@@ -220,8 +258,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <InputNumber
                       style={{ marginLeft: "10px" }}
                       min={0}
-                      max={250}
-                      defaultValue={0}
+                      max={65553}
+                      value={vit}
                       onChange={onVitChange}
                     />
                   </Col>
@@ -238,7 +276,7 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                       style={{ marginLeft: "10px" }}
                       min={0}
                       max={250}
-                      defaultValue={0}
+                      value={ene}
                       onChange={onEneChange}
                     />
                   </Col>
@@ -257,8 +295,8 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                     <InputNumber
                       style={{ marginLeft: "10px" }}
                       min={0}
-                      max={250}
-                      defaultValue={0}
+                      max={65553}
+                      value={cmd}
                       onChange={onCmdChange}
                     />
                   </Col>
