@@ -46,19 +46,19 @@ class BaseChar implements IChar {
   maxFruit: number = 0;
 
   // -- attack
-  min_dmg: number = 0;
-  max_dmg: number = 0;
-  wiz_min_dmg: number = 0;
-  wiz_max_dmg: number = 0;
-  skill_dmg: number = 0;
-  aoe_dmg: number = 0;
-  attack_rate: number = 0;
-  attack_speed: number = 0;
+  minDmg: number = 0;
+  maxDmg: number = 0;
+  wizMinDmg: number = 0;
+  wizMaxDmg: number = 0;
+  skillDmg: number = 0;
+  aoeDmg: number = 0;
+  attackRate: number = 0;
+  attackSpeed: number = 0;
 
   // -- defense
   def: number = 0;
-  def_rate: number = 0;
-  def_pvp_rate: number = 0;
+  defRate: number = 0;
+  defPvPRate: number = 0;
 
   constructor(key: String) {
     this.key = key;

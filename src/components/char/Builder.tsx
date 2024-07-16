@@ -25,19 +25,35 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
   const [point, setPoint] = useState(0);
   const [rPoint, setRPoint] = useState(0);
 
+  // Stat
   const [str, setStr] = useState(0);
   const [agi, setAgi] = useState(0);
   const [vit, setVit] = useState(0);
   const [ene, setEne] = useState(0);
   const [cmd, setCmd] = useState(0);
 
+  // Status
   const [hp, setHP] = useState(0);
   const [sd, setSD] = useState(0);
   const [ag, setAG] = useState(0);
   const [mp, setMP] = useState(0);
 
   // Attack
-  const [minDmg, setMinDmg] = useState(0);
+  const [atkMin, setAtkMin] = useState(0);
+  const [atkMax, setAtkMax] = useState(0);
+  const [atkRate, setAtkRate] = useState(0);
+  const [atkPvPRate, setAtkPvpRate] = useState(0);
+  const [atkSpeed, setAtkSpeed] = useState(0);
+
+  // Spell
+  const [skillDmg, setSkillDmg] = useState(0);
+  const [wizardMin, setWizardMin] = useState(0);
+  const [wizardMax, setWizardMax] = useState(0);
+
+  // Defense
+  const [def, setDef] = useState(0);
+  const [defRate, setDefRate] = useState(0);
+  const [defPvPRate, setDefPvPRate] = useState(0);
 
   const onMasterChange: InputNumberProps["onChange"] = (value: any) => {
     char.master = value;
@@ -78,6 +94,7 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
     char.vit = value;
     setVit(value);
     setRPoint(char.getRPoint());
+    setHP(char.getHP());
   };
   const onEneChange: InputNumberProps["onChange"] = (value: any) => {
     if (char.getRPoint() == 0 && value > ene) return;
@@ -95,6 +112,7 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
   };
 
   useEffect(() => {
+    setName(char.getName());
     setMaster(char.master);
     setLevel(char.level);
     setFruit(char.fruit);
@@ -222,10 +240,10 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Dmg(rate): 0~0 (0)</span>
+                  <span>Dmg(rate): {atkMin}~{atkMax} ({atkRate})</span>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Attack rate: </span>
+                  <span>Attack rate: {atkPvPRate}</span>
                 </Row>
                 <Row className={styles.charRowHeader}>
                   <Col>
@@ -242,13 +260,13 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Defense (rate): 0 (0)</span>
+                  <span>Defense (rate): {def} ({defRate})</span>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Attack speed: 0</span>
+                  <span>Attack speed: {atkSpeed}</span>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Defense rate: 0</span>
+                  <span>Defense rate: {defPvPRate}</span>
                 </Row>
                 <Row className={styles.charRowHeader}>
                   <Col>
@@ -265,7 +283,7 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>HP: 0/0</span>
+                  <span>HP: {hp}/{hp}</span>
                 </Row>
                 <Row className={styles.charRowHeader}>
                   <Col>
@@ -282,10 +300,10 @@ const CharBuilder: React.FC<CharBuilderProps> = ({ charKey }) => {
                   </Col>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Mana: 0/0</span>
+                  <span>Mana: {mp}/{mp}</span>
                 </Row>
                 <Row className={styles.charRowItem}>
-                  <span>Skill Damage: 0%</span>
+                  <span>Skill Damage: {skillDmg}%</span>
                 </Row>
                 <Row className={styles.charRowHeader}>
                   <Col>

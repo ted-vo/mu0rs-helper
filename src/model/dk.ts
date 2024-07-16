@@ -11,6 +11,7 @@ class DK extends BaseChar {
     this.agi = 20;
     this.vit = 25;
     this.ene = 10;
+    this.maxFruit = 127;
   }
 
   getName(): string {
@@ -29,7 +30,7 @@ class DK extends BaseChar {
     }
 
     if (this.level == 400) {
-      basePoint += 80;
+      basePoint += 85;
     }
 
     return basePoint + this.fruit;

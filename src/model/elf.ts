@@ -29,7 +29,7 @@ class ELF extends BaseChar {
     }
 
     if (this.level == 400) {
-      basePoint += 80;
+      basePoint += 85;
     }
 
     return basePoint + this.fruit;
